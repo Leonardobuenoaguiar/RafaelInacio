@@ -287,7 +287,7 @@ export default function Hero() {
 
           .hero-media {
             /* Aproxima a foto do botão sem reduzir o tamanho da imagem. */
-            height: 280px;
+            height: 300px;
           }
 
           .hero-doctor {
