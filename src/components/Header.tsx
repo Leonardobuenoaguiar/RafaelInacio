@@ -429,8 +429,8 @@ export default function Header() {
           }
 
           .hdr-mark {
-            width: 46px;
-            height: 46px;
+            width: 52px;
+            height: 52px;
           }
 
           /* O nome continua visível no mobile. */
@@ -453,9 +453,9 @@ export default function Header() {
           }
 
           .hdr-inner > .hdr-cta-main {
-            height: 36px;
-            padding: 0 11px;
-            font-size: 11.5px;
+            height: 40px;
+            padding: 0 14px;
+            font-size: 12.5px;
           }
 
           .hdr-burger {
@@ -483,8 +483,8 @@ export default function Header() {
           }
 
           .hdr-mark {
-            width: 42px;
-            height: 42px;
+            width: 46px;
+            height: 46px;
           }
 
           .hdr-name {
@@ -499,9 +499,9 @@ export default function Header() {
           }
 
           .hdr-inner > .hdr-cta-main {
-            height: 34px;
-            padding: 0 8px;
-            font-size: 10.5px;
+            height: 37px;
+            padding: 0 10px;
+            font-size: 11px;
           }
 
           .hdr-burger {
