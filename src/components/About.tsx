@@ -113,13 +113,19 @@ export default function About() {
           </Reveal>
 
           <Reveal delay={260}>
-            <a
-              href="/sobremim"
-              className="abt-btn"
-              aria-label="Abrir a página Sobre Mim do Dr. Rafael Inácio"
-            >
-              Saiba Mais
-            </a>
+            <div className="abt-credentials" aria-label="Registros profissionais do Dr. Rafael Inácio">
+              <div className="abt-credential">
+                <span>CRM-SP</span>
+                <strong>189.212</strong>
+              </div>
+
+              <span className="abt-credential-divider" aria-hidden="true" />
+
+              <div className="abt-credential">
+                <span>RQE Psiquiatria</span>
+                <strong>102285</strong>
+              </div>
+            </div>
           </Reveal>
         </div>
       </div>
@@ -221,25 +227,52 @@ export default function About() {
           margin-top: 34px;
         }
 
-        .abt-btn {
+        .abt-credentials {
           display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          margin-top: 54px;
-          height: 42px;
-          padding: 0 26px;
-          border-radius: 999px;
-          background-color: #3192ab;
-          color: #ffffff;
-          font-size: 16px;
-          font-weight: 400;
-          text-decoration: none;
-          transition: background-color 0.25s ease, transform 0.25s ease;
+          align-items: stretch;
+          gap: 22px;
+          margin-top: 42px;
+          padding: 16px 22px;
+          border: 1px solid rgba(141, 73, 54, 0.14);
+          border-radius: 18px;
+          background: linear-gradient(135deg, #ffffff 0%, #fcf8f5 100%);
+          box-shadow: 0 10px 28px rgba(93, 70, 64, 0.06);
         }
 
-        .abt-btn:hover {
-          background-color: #2a8199;
-          transform: translateY(-1px);
+        .abt-credential {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 4px;
+        }
+
+        .abt-credential span {
+          color: #3192ab;
+          font-size: 10px;
+          font-weight: 500;
+          line-height: 1.2;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+        }
+
+        .abt-credential strong {
+          color: #8d4936;
+          font-size: 17px;
+          font-weight: 500;
+          line-height: 1.2;
+          letter-spacing: 0.02em;
+        }
+
+        .abt-credential-divider {
+          display: block;
+          width: 1px;
+          min-height: 38px;
+          background: linear-gradient(
+            180deg,
+            transparent,
+            rgba(141, 73, 54, 0.24),
+            transparent
+          );
         }
 
         @media (max-width: 1180px) and (min-width: 981px) {
@@ -308,8 +341,8 @@ export default function About() {
             margin-top: 22px;
           }
 
-          .abt-btn {
-            margin-top: 34px;
+          .abt-credentials {
+            margin-top: 32px;
           }
         }
       `}</style>
