@@ -1,148 +1,308 @@
-import { MAPS_URL, WHATSAPP_URL } from "../lib/data";
+import { WHATSAPP_URL } from "../lib/data";
 
 export default function Hero() {
   return (
-    <section
-      id="inicio"
-      className="relative overflow-hidden bg-ink-900 text-white"
-      aria-label="Apresentação"
-    >
-      {/* Background accents */}
-      <div className="pointer-events-none absolute -left-40 top-10 h-96 w-96 rounded-full bg-gold-500/10 blur-3xl" />
-      <div className="pointer-events-none absolute -right-32 bottom-0 h-[28rem] w-[28rem] rounded-full bg-gold-500/10 blur-3xl" />
-      <div className="gold-line absolute inset-x-0 top-0 h-px" />
+    <section id="inicio" className="hero" aria-label="Apresentação">
+      {/* Folhagem decorativa à esquerda */}
+      <svg className="hero-leaves" viewBox="0 0 260 460" aria-hidden="true">
+        <g fill="#F7E9E4">
+          <path
+            d="M132 460c-6-90-4-170 6-238 8-56 20-104 30-152l6 1c-10 48-22 96-30 152-10 68-12 148-6 237h-6Z"
+            fill="#F4E2DC"
+          />
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 pb-16 pt-28 sm:px-8 lg:grid-cols-2 lg:gap-16 lg:pb-24 lg:pt-36">
-        {/* Text */}
-        <div className="order-2 text-center lg:order-1 lg:text-left">
-          <p
-            className="mb-6 inline-flex items-center gap-3 rounded-full border border-gold-500/40 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.25em] text-gold-300"
-            style={{ animation: "fadeIn .8s ease .1s both" }}
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-gold-400" />
-            Psiquiatria &amp; Saúde Mental
-          </p>
+          {[
+            { x: 120, y: 60, r: -38, s: 1 },
+            { x: 150, y: 92, r: 32, s: 0.95 },
+            { x: 96, y: 118, r: -46, s: 1.1 },
+            { x: 158, y: 150, r: 40, s: 0.9 },
+            { x: 80, y: 176, r: -52, s: 1.15 },
+            { x: 160, y: 208, r: 44, s: 0.88 },
+            { x: 70, y: 236, r: -56, s: 1.1 },
+            { x: 150, y: 266, r: 46, s: 0.85 },
+            { x: 64, y: 296, r: -58, s: 1 },
+            { x: 140, y: 322, r: 48, s: 0.8 },
+            { x: 62, y: 352, r: -60, s: 0.9 },
+            { x: 30, y: 150, r: -70, s: 0.9 },
+            { x: 26, y: 232, r: -74, s: 0.85 },
+            { x: 34, y: 300, r: -76, s: 0.8 },
+          ].map((leaf, index) => (
+            <ellipse
+              key={index}
+              cx="0"
+              cy="0"
+              rx={30 * leaf.s}
+              ry={13 * leaf.s}
+              transform={`translate(${leaf.x} ${leaf.y}) rotate(${leaf.r})`}
+            />
+          ))}
+        </g>
+      </svg>
 
-          <h1
-            className="text-balance font-display text-4xl font-medium leading-[1.08] sm:text-5xl lg:text-6xl"
-            style={{ animation: "fadeIn .8s ease .2s both" }}
-          >
-            Cuidar da mente <br className="hidden sm:block" />
-            também é <span className="gold-shimmer italic">cuidar de você</span>.
+      <div className="hero-inner">
+        {/* Texto */}
+        <div className="hero-text">
+          <h1 className="hero-title">
+            Médico Psiquiatra
+            <br />
+            Dr. Rafael Inácio
           </h1>
 
-          <p
-            className="mx-auto mt-6 max-w-xl text-base font-light leading-relaxed text-white/70 sm:text-lg lg:mx-0"
-            style={{ animation: "fadeIn .8s ease .3s both" }}
-          >
-            Atendimento em Psiquiatria com acolhimento, escuta e acompanhamento
-            individualizado.
+          <p className="hero-crm">CRM 189.212 • RQE PSIQUIATRIA 102285</p>
+
+          <p className="hero-sub">
+            Atendimentos em psiquiatria clínica,
+            <br />
+            psicoterapia e psiquiatria forense.
           </p>
 
-          <p
-            className="mt-4 text-sm font-light text-white/55"
-            style={{ animation: "fadeIn .8s ease .4s both" }}
-          >
-            Atendimento presencial e por telemedicina
+          <p className="hero-strong">
+            Assistência particular presencial e online.
           </p>
 
-          <div
-            className="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start"
-            style={{ animation: "fadeIn .8s ease .45s both" }}
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero-btn"
           >
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold-500 px-7 py-4 text-sm font-semibold uppercase tracking-wider text-ink-900 shadow-[0_10px_30px_rgba(201,162,39,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-400 hover:shadow-[0_16px_40px_rgba(201,162,39,0.5)] sm:w-auto"
-            >
-              Agende sua consulta
-            </a>
-            <a
-              href="#sobre"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/25 px-7 py-4 text-sm font-medium uppercase tracking-wider text-white/90 transition-all duration-300 hover:border-gold-400 hover:text-gold-300 sm:w-auto"
-            >
-              Conheça o Dr. Rafael
-            </a>
-          </div>
-
-          {/* Indicators */}
-          <div
-            className="mt-12 grid grid-cols-2 gap-3 border-t border-white/10 pt-8 sm:mx-auto sm:max-w-md lg:mx-0"
-            style={{ animation: "fadeIn .8s ease .55s both" }}
-          >
-            <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-gold-500/40 text-gold-400">
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-              </span>
-              <div className="text-left">
-                <p className="text-sm font-medium text-white">Presencial</p>
-                <p className="text-xs font-light text-white/55">São Paulo – SP</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-gold-500/40 text-gold-400">
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="6" width="20" height="12" rx="2" />
-                  <path d="m8 12 3 3 5-6" />
-                </svg>
-              </span>
-              <div className="text-left">
-                <p className="text-sm font-medium text-white">Telemedicina</p>
-                <p className="text-xs font-light text-white/55">Consultas online</p>
-              </div>
-            </div>
-          </div>
+            Agendar Consulta
+          </a>
         </div>
 
-        {/* Image */}
-        <div
-          className="relative order-1 lg:order-2"
-          style={{ animation: "fadeIn 1s ease .2s both" }}
-        >
-          <div className="relative mx-auto max-w-sm lg:max-w-md">
-            {/* decorative ring */}
-            <div className="absolute -inset-4 rounded-[2rem] border border-gold-500/25" />
-            <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full border border-gold-500/30 sm:h-32 sm:w-32" />
-
-            <div className="relative overflow-hidden rounded-[1.6rem] bg-ink-800 shadow-2xl">
-              <img
-                src="/images/hero-doctor.png"
-                alt="Dr. Rafael Inácio, médico psiquiatra"
-                className="aspect-[4/5] w-full object-cover"
-                loading="eager"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink-900/50 via-transparent to-transparent" />
-            </div>
-
-            <a
-              href={MAPS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="animate-float-slow absolute -bottom-5 left-1/2 flex -translate-x-1/2 items-center gap-3 whitespace-nowrap rounded-full border border-white/10 bg-ink-800/90 px-5 py-3 shadow-xl backdrop-blur"
-            >
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold-500/15 text-gold-400">
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 21s-7-5.1-7-11a7 7 0 1 1 14 0c0 5.9-7 11-7 11Z" />
-                  <circle cx="12" cy="10" r="2.5" />
-                </svg>
-              </span>
-              <span className="text-left text-xs">
-                <span className="block font-medium text-white">Consultório</span>
-                <span className="block font-light text-white/60">Vila Mariana · SP</span>
-              </span>
-            </a>
-          </div>
+        {/* PNG transparente, exibido inteiro e sem fundo adicional */}
+        <div className="hero-media">
+          <img
+            className="hero-doctor"
+            src="/images/hero-doctor.png"
+            alt="Dr. Rafael Inácio, médico psiquiatra"
+            loading="eager"
+            fetchPriority="high"
+          />
         </div>
       </div>
 
       <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(18px); }
-          to { opacity: 1; transform: translateY(0); }
+        .hero {
+          --header-h: 96px;
+          position: relative;
+          /* A próxima seção fica em uma camada acima da Hero. */
+          z-index: 1;
+          /* Permite que a imagem continue alguns pixels abaixo da divisão. */
+          overflow: visible;
+          padding-top: var(--header-h);
+          margin: 0 !important;
+          background-color: #ffffff;
+
+          /* Remove qualquer borda antiga para ela não voltar. */
+          border: 0 !important;
+          border-top: 0 !important;
+          border-bottom: 0 !important;
+          box-shadow: none !important;
+        }
+
+        /* Cria somente a divisão fina e sutil do print. */
+        .hero::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          /* A linha passa atrás da imagem transparente. */
+          z-index: 1;
+          width: 100%;
+          height: 1px;
+          background-color: #e7c9b6;
+          box-shadow: 0 6px 18px rgba(141, 73, 54, 0.04);
+          pointer-events: none;
+        }
+
+        /* Impede que a próxima seção acrescente uma segunda linha. */
+        .hero + section {
+          position: relative;
+          /* Cobre a parte da imagem que ultrapassa a Hero. */
+          z-index: 3;
+          border-top: 0 !important;
+          box-shadow: none !important;
+        }
+
+        .hero-leaves {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 260px;
+          height: 460px;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .hero-inner {
+          position: relative;
+          z-index: 2;
+          margin: 0 auto;
+          max-width: 1240px;
+          min-height: 451px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          align-items: center;
+          gap: 24px;
+          padding: 0 24px;
+        }
+
+        .hero-text {
+          position: relative;
+          z-index: 2;
+          /* Afasta o texto e o botão da lateral esquerda. */
+          padding-left: clamp(80px, 8vw, 124px);
+        }
+
+        .hero-title {
+          margin: 0;
+          color: #8d4936;
+          font-size: 40px;
+          font-weight: 300;
+          line-height: 1.28;
+          letter-spacing: 0.005em;
+          font-family: "Jost", "Questrial", "Century Gothic", "Futura",
+            "Avenir Next", "Segoe UI", system-ui, sans-serif;
+        }
+
+        .hero-crm {
+          margin: 14px 0 0;
+          color: #8d4936;
+          font-size: 13px;
+          font-weight: 500;
+          letter-spacing: 0.01em;
+          font-family: "Jost", "Questrial", "Century Gothic", "Futura",
+            "Avenir Next", "Segoe UI", system-ui, sans-serif;
+        }
+
+        .hero-sub {
+          margin: 42px 0 0;
+          color: #a08578;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 1.55;
+          font-family: "Jost", "Questrial", "Century Gothic", "Futura",
+            "Avenir Next", "Segoe UI", system-ui, sans-serif;
+        }
+
+        .hero-strong {
+          margin: 18px 0 0;
+          color: #5d4640;
+          font-size: 15px;
+          font-weight: 600;
+          font-family: "Jost", "Questrial", "Century Gothic", "Futura",
+            "Avenir Next", "Segoe UI", system-ui, sans-serif;
+        }
+
+        .hero-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 52px;
+          padding: 0 26px;
+          height: 46px;
+          border-radius: 999px;
+          background-color: #3192ab;
+          color: #ffffff;
+          font-size: 16px;
+          font-weight: 500;
+          text-decoration: none;
+          transition: background-color 0.25s ease, transform 0.25s ease;
+          font-family: "Jost", "Questrial", "Century Gothic", "Futura",
+            "Avenir Next", "Segoe UI", system-ui, sans-serif;
+        }
+
+        .hero-btn:hover {
+          background-color: #2a8199;
+          transform: translateY(-1px);
+        }
+
+        /*
+         * A imagem já é um PNG transparente.
+         * Não existe fundo, máscara, borda ou recorte criado pelo CSS.
+         */
+        .hero-media {
+          position: relative;
+          z-index: 3;
+          align-self: end;
+          width: 100%;
+          height: 451px;
+          overflow: visible;
+        }
+
+        .hero-doctor {
+          position: absolute;
+          right: 0;
+          /*
+           * A imagem atravessa discretamente a linha, mas a próxima seção
+           * fica por cima e encobre essa sobra, produzindo um corte limpo.
+           */
+          bottom: -26px;
+          display: block;
+          width: min(112%, 620px);
+          max-width: none;
+          height: auto;
+          max-height: 535px;
+          object-fit: contain;
+          object-position: right bottom;
+          background: transparent !important;
+          border: 0 !important;
+          border-radius: 0 !important;
+          outline: 0 !important;
+          box-shadow: none !important;
+          filter: none;
+        }
+
+        @media (max-width: 900px) {
+          .hero {
+            --header-h: 72px;
+          }
+
+          .hero-inner {
+            grid-template-columns: 1fr;
+            min-height: 0;
+            /* Reduz somente no mobile o espaço entre o botão e a imagem. */
+            gap: 10px;
+            padding: 48px 24px 0;
+            text-align: center;
+          }
+
+          .hero-text {
+            padding-left: 0;
+          }
+
+          .hero-title {
+            font-size: 32px;
+          }
+
+          .hero-sub {
+            margin-top: 28px;
+          }
+
+          .hero-btn {
+            margin-top: 32px;
+          }
+
+          .hero-media {
+            /* Aproxima a foto do botão sem reduzir o tamanho da imagem. */
+            height: 280px;
+          }
+
+          .hero-doctor {
+            right: 50%;
+            bottom: -16px;
+            width: min(135%, 560px);
+            max-width: none;
+            max-height: 500px;
+            object-position: center bottom;
+            transform: translateX(50%);
+          }
+
+          .hero-leaves {
+            opacity: 0.5;
+          }
         }
       `}</style>
     </section>

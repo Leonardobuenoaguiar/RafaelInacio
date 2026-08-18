@@ -1,11 +1,38 @@
 import Reveal from "./Reveal";
-import SectionHeading from "./SectionHeading";
 import { MAPS_URL, WHATSAPP_URL } from "../lib/data";
+
+/* ------------------------------------------------------------------
+   Marca d'agua decorativa: cerebro (silhueta de giros cerebrais).
+   Usa currentColor -> a cor vem do CSS (.atd-deco).
+------------------------------------------------------------------ */
+const BRAIN_PATH =
+  "M143 418C141 417 135 417 131 416C122 415 120 413 128 413C146 413 166 409 171 404C173 403 173 403 173 404C173 405 172 407 171 407C170 408 167 411 164 414C158 421 153 422 143 418ZM210 417C209 416 204 415 199 414C186 412 183 409 183 400C183 392 184 392 196 396C201 398 204 399 207 398C211 398 212 398 214 400C222 408 228 407 242 397C252 390 256 394 251 403C246 412 221 420 210 417ZM124 408C122 407 122 406 123 401C123 398 123 393 123 390C122 378 138 371 144 381C147 386 147 387 141 387C134 386 128 389 131 393C133 395 134 394 137 392C140 390 143 390 150 392C154 393 155 390 152 385C150 380 150 378 153 378C155 378 156 374 154 373C152 371 151 370 139 369C122 367 119 364 117 351C115 342 113 340 105 335C101 332 99 330 96 326C90 316 79 307 72 307C68 307 70 309 76 312C87 318 94 327 92 334C90 342 92 345 95 339C100 331 110 340 112 354C113 359 114 361 116 364C117 366 119 368 120 370C125 376 113 377 100 372C87 368 86 364 95 361C101 359 106 355 104 354C103 354 101 355 98 356C81 363 71 360 72 346L73 340L67 341C58 341 55 339 56 333C56 325 58 324 65 328C72 333 79 337 80 337C81 335 76 330 68 327C63 324 60 317 59 308C58 291 92 300 96 317C98 325 110 332 124 334C133 335 136 336 144 340C151 344 155 345 155 344C158 341 138 331 125 329C106 326 98 321 98 310C98 300 104 301 116 311C120 315 122 316 129 316C134 317 136 318 140 322C147 328 150 329 158 331C173 333 175 336 175 349C175 354 175 357 177 360C181 369 179 370 170 367C163 364 152 358 145 352C139 346 135 344 130 344C126 344 126 346 132 348C135 349 137 349 138 350C138 350 140 352 142 355C147 362 150 364 160 370C185 384 179 405 151 405C148 405 142 406 139 407C131 409 126 410 124 408ZM102 403C100 402 96 400 92 399C78 394 66 386 75 387C81 387 85 389 89 394C93 399 95 399 96 394C98 387 91 382 79 382C67 382 58 378 55 370C51 361 72 360 85 370C91 374 97 376 108 379C118 382 121 391 113 400C109 405 107 405 102 403ZM259 401C259 401 260 400 260 399C261 398 262 396 261 394C261 391 261 390 264 388C270 385 271 385 270 390C267 395 268 397 272 393C273 392 275 392 276 392C279 394 274 397 268 399C265 400 262 401 261 401C261 402 259 402 259 401ZM228 396C224 394 226 389 234 380C240 374 243 370 243 369C243 365 239 367 234 373C217 395 210 398 195 392C189 389 188 386 185 373C182 357 182 355 189 357C191 358 194 359 197 359C201 359 202 359 203 369C205 385 219 380 234 358C244 344 251 342 256 350C260 358 258 365 250 375C243 382 244 387 251 382C263 374 267 357 260 348L257 344L260 344C272 347 272 367 260 380C250 391 233 399 228 396ZM276 386C266 380 270 369 285 361C294 357 300 350 295 349C293 348 292 349 286 353C272 365 266 346 280 331C284 326 285 324 282 323C280 323 277 326 272 333C266 342 259 343 255 335C254 331 254 328 258 323C262 318 262 315 259 315C256 316 253 320 249 329C245 341 222 368 215 370C209 371 205 363 208 357C208 355 209 355 213 356C218 356 220 353 224 343C227 334 227 334 234 328C238 326 243 321 247 318C263 303 276 307 267 323C265 327 264 330 265 330C266 332 268 330 272 323C277 311 287 308 291 317C295 324 292 333 283 341C273 351 278 352 288 342C302 330 319 325 327 331C332 335 331 343 323 350C321 352 318 355 317 357C315 361 310 366 304 370C302 371 299 375 297 378C291 388 283 390 276 386ZM41 357C36 354 37 350 42 350C44 351 45 351 45 350C45 347 40 346 35 347C30 348 29 348 27 343C27 341 25 338 23 336C14 327 16 319 29 320C34 321 35 321 39 327C48 337 53 341 59 344C66 348 67 350 65 355C61 360 47 362 41 357ZM191 353C180 348 179 323 190 313C194 309 195 305 193 299C192 296 192 296 189 304C187 311 184 312 181 307C178 302 181 288 186 286C190 285 203 286 206 287C211 290 217 289 223 286C231 279 235 278 241 279C247 279 255 275 259 269C267 259 281 267 281 281C281 303 279 308 271 304C259 300 251 302 245 311C234 327 222 324 213 304C210 294 207 290 205 291C203 293 204 297 207 304C212 313 212 317 207 322C201 328 205 330 212 324C221 315 227 329 220 343C216 351 202 353 202 345C202 345 204 342 206 339C212 332 212 329 206 334C201 338 199 335 199 327C199 322 198 319 196 321C194 323 195 329 197 337C200 349 197 357 191 353ZM48 330C47 329 45 326 43 323C40 317 36 316 25 316C14 315 16 317 10 303C2 286 8 286 28 302C35 308 39 309 46 309C56 308 62 319 55 323C54 324 52 326 51 328C49 331 49 331 48 330ZM332 326C332 325 333 321 334 317C337 309 338 305 336 305C334 305 333 307 331 314C329 321 320 324 318 318C317 316 317 315 319 311C322 305 323 299 321 295C318 293 317 295 316 303C312 324 300 330 300 310C300 304 299 302 295 302C288 302 285 297 285 288C285 277 295 265 300 270C302 272 301 273 297 277C294 279 294 280 295 281C297 283 296 285 293 289C290 294 291 295 294 292C298 290 299 291 298 296C298 300 298 300 300 300C303 300 304 299 303 292C302 283 304 281 312 281C318 281 319 281 322 278C329 272 335 280 332 291C330 298 330 302 331 302C332 302 334 296 337 288C340 275 343 271 347 276C351 280 350 301 346 301C345 301 345 300 345 296C346 292 346 291 345 291C342 292 341 298 340 309C339 315 339 321 338 323C337 327 332 330 332 326ZM160 325C156 323 151 321 148 319C139 312 137 311 131 311C117 311 113 302 117 280C121 264 125 260 131 265C141 272 140 281 130 291C126 295 123 299 123 300C123 303 126 302 131 296C139 288 141 287 146 289C152 292 153 291 159 287C169 281 171 281 170 289C170 293 170 295 173 301C183 321 178 331 160 325ZM238 306C243 303 250 294 249 292C248 292 246 293 243 295C240 296 236 299 233 299C227 301 226 303 227 305C228 307 234 307 238 306ZM37 303C35 302 31 298 27 294C21 289 18 287 14 286C3 282 -4 269 2 261C4 257 6 258 12 269C16 278 20 283 26 287C30 289 30 287 26 283C22 279 12 263 6 252C1 242 4 233 11 239C12 241 15 242 16 242C21 242 24 244 26 250C27 253 30 257 32 259C34 262 36 266 37 270C40 281 43 287 48 292C55 301 49 307 37 303ZM82 297C79 297 73 296 68 295C53 293 47 286 40 264C39 260 36 255 34 251C29 244 28 238 28 231C29 228 29 224 30 221C30 216 28 209 24 205C21 203 21 204 23 210C25 214 26 221 24 229C23 241 7 238 7 227C7 221 9 220 12 224C14 227 17 228 17 226C17 225 16 223 15 222C14 221 12 219 11 216C3 198 29 185 39 202C40 204 44 209 47 212C53 217 53 218 57 228C60 241 72 259 78 262C82 264 99 264 104 262C118 257 119 260 114 278C108 299 103 302 82 297ZM97 281C98 280 101 278 102 275C104 273 106 270 107 269C109 267 109 267 108 266C107 265 105 266 100 272C93 280 93 280 82 278C68 276 65 273 62 263C60 256 58 251 52 245C47 238 45 234 42 224C40 216 37 211 36 211C35 211 35 212 35 213C36 214 37 220 39 226C41 236 43 240 51 249C54 253 56 257 58 263C61 273 66 279 73 281C86 284 92 284 97 281ZM204 282C202 282 198 281 194 281C182 281 178 277 181 267C184 254 193 250 204 254C210 255 210 255 210 253C210 251 209 250 208 249C206 248 206 247 206 244C207 239 205 239 199 245C184 258 175 246 181 222C182 217 182 214 181 209C178 193 181 161 186 159C190 157 207 166 209 173C210 174 212 177 214 179C216 181 219 185 222 189C224 193 227 197 228 200C237 213 229 229 216 224C209 221 210 235 218 244C228 257 218 273 206 262C203 259 200 258 200 261C200 267 210 270 219 267C227 265 233 272 227 276C216 285 212 286 204 282ZM149 280C148 279 147 278 147 277C147 274 139 264 135 260C125 252 112 251 98 256C84 261 79 260 74 250C72 245 72 245 74 233C74 228 73 228 71 232C70 233 69 234 67 234C58 234 58 218 66 203C69 198 70 195 68 195C66 195 61 201 59 208C56 215 57 215 51 210C43 203 42 201 43 192C43 185 43 184 41 180C40 178 39 174 39 172C39 169 39 168 37 168C34 169 35 174 37 181C41 187 41 189 38 192L36 194L33 191C27 186 17 188 11 194L9 198L9 193C10 191 11 186 13 182C15 179 17 173 18 170C22 159 31 156 40 162C44 165 52 174 52 176C52 180 54 180 57 178C74 168 88 188 79 208C75 216 76 217 95 212C98 212 103 215 104 219C105 226 103 229 94 238C89 243 85 247 85 248C85 250 89 249 95 244C103 236 104 236 112 237C120 237 123 236 129 229C136 221 137 220 140 220C144 220 150 226 157 236C160 240 162 241 166 242C174 245 177 250 174 255C172 258 157 252 154 246C154 245 153 242 152 241C150 236 149 240 150 245C151 250 155 255 160 257C169 261 174 269 171 273C166 279 152 284 149 280ZM305 273C303 270 302 264 304 255C306 244 310 246 311 258C312 263 313 267 313 267C315 267 316 264 317 257C319 249 319 249 327 243C335 237 331 234 322 239C315 244 312 244 310 240C309 238 308 237 306 236C304 235 302 234 300 229C295 217 293 225 297 238C304 256 292 277 282 265C276 259 276 254 282 251C285 249 286 246 283 239C280 228 282 224 291 220C296 218 300 214 310 201C315 194 319 193 326 195C330 197 332 197 336 196C342 194 346 200 346 209C346 214 337 215 329 211C319 207 319 207 312 214C305 221 302 227 304 229C306 230 308 227 310 224C313 215 317 212 326 214C342 217 347 229 338 245C336 249 333 255 333 258C328 273 314 281 305 273ZM240 272C231 269 227 262 228 253C229 246 229 245 224 242C217 237 218 232 227 226C236 220 237 218 237 209C237 199 241 197 245 205C248 210 247 214 243 223C236 236 237 239 246 233C253 229 260 231 260 237C260 241 261 243 262 243C267 243 264 234 259 227C250 217 252 212 263 212C271 212 274 210 276 204C278 200 281 198 286 193C294 187 298 182 302 172C309 158 312 157 321 172C327 183 335 186 335 177C335 172 338 170 341 174C348 183 340 195 331 189C323 183 319 184 314 192C311 197 309 199 305 199C301 199 297 203 294 209C291 216 288 218 282 218C273 218 272 221 277 231C282 241 278 253 268 257C261 259 260 260 255 267C251 274 247 276 240 272ZM342 269C337 265 337 263 341 250C345 239 347 236 349 237C352 238 351 271 349 272C347 273 346 273 342 269ZM348 262C349 258 349 248 348 248C347 248 346 249 346 257C345 265 346 268 348 262ZM164 236C163 235 159 231 156 227C147 213 139 212 127 224C116 236 109 235 108 222C108 216 108 216 106 213C103 211 102 209 104 205C106 203 106 202 105 201C104 201 103 201 99 207C98 209 96 209 90 210L83 210L83 208C83 199 94 192 108 193C121 194 124 205 114 213C112 215 112 217 115 217C118 217 122 212 123 205C124 202 125 198 126 197C128 192 127 185 124 177C122 171 122 169 122 160C122 143 125 139 134 144C135 145 137 146 138 146C140 146 147 152 148 155C149 156 150 156 152 153C161 142 178 151 174 163C172 167 170 167 167 164C160 160 160 163 166 169C171 175 173 180 175 204C177 234 175 242 164 236ZM200 218C207 204 206 204 219 206C221 206 222 206 222 205C222 203 218 201 213 201C207 201 206 201 204 189C202 177 202 178 197 178C192 179 192 181 196 182C201 184 202 186 202 193L202 199L198 201C194 203 193 204 196 207C197 210 196 216 194 224C190 233 194 230 200 218ZM164 217C165 201 159 184 150 174C145 169 143 166 142 161C139 154 138 153 134 151C130 148 129 149 133 153C135 155 137 159 139 163C141 170 148 180 150 180C154 180 158 192 159 207C161 225 163 230 164 217ZM253 206C249 204 247 197 246 189C245 175 247 173 262 175C276 176 293 166 293 157C293 152 291 153 288 158C277 174 248 173 249 157C251 147 251 145 249 144C245 141 244 144 244 154C244 165 243 168 238 171C234 174 234 175 238 179C244 186 245 195 240 196C237 197 235 196 230 190C228 187 225 182 222 180C215 172 216 167 225 160C234 153 237 144 233 133C230 124 231 114 235 114C236 114 243 107 243 106C243 100 228 109 223 118C219 126 215 126 205 118C201 114 197 112 192 110C181 107 181 107 182 78C182 53 183 50 186 50C188 50 188 51 189 54C189 57 190 58 192 60C198 62 203 68 203 71C203 76 199 82 196 83C189 84 191 87 198 87C204 87 205 87 210 90C216 95 221 95 233 92C251 86 256 89 253 107C250 120 251 124 261 136C267 143 268 145 266 151C264 158 267 162 269 156C273 149 270 141 262 129C257 122 256 116 258 107C259 104 260 100 260 98C260 94 260 94 263 94C269 94 270 99 267 111C265 122 266 123 274 127C276 129 280 131 281 132C282 133 287 135 291 136C301 138 303 140 305 154C306 164 289 190 280 192C274 193 269 191 267 186C265 180 264 180 262 180C261 180 261 180 261 184C261 189 261 190 259 191C256 193 257 197 260 196C269 193 273 194 273 199C273 206 260 211 253 206ZM115 189C112 188 110 188 103 188C92 189 88 188 84 182C76 171 74 170 59 169C52 169 36 150 36 142C36 132 47 120 55 122C60 123 62 121 61 116C61 112 61 110 62 110C64 108 63 105 61 103C52 97 53 84 61 78C66 75 69 75 75 80C78 82 83 85 86 87C99 92 100 102 90 111C85 115 85 116 84 122C83 128 79 132 79 126C79 123 79 121 84 111C88 101 88 100 84 100C81 99 79 97 76 92C74 87 72 86 71 89C71 90 72 93 74 96C80 104 80 112 75 116C72 118 72 119 73 123L73 128L66 128C56 127 44 131 48 135C48 136 51 135 54 133C71 126 95 139 95 155C95 161 94 162 89 157C83 151 81 150 70 149C64 148 60 148 59 147C57 145 55 145 55 146C55 149 60 151 69 152C79 153 83 155 88 163C93 170 96 168 99 157C101 150 102 150 108 151C114 153 116 155 116 164C117 168 118 174 120 179C125 191 124 193 115 189ZM327 170C326 170 323 167 321 164C319 160 315 157 313 156C305 152 302 137 309 138C312 138 313 139 313 143C314 151 319 151 323 143C326 138 326 138 329 142C331 146 332 154 329 156C327 159 328 161 332 160C336 160 338 161 338 164C338 169 332 172 327 170ZM208 161C200 157 200 154 211 147C221 141 221 136 212 141C205 145 204 143 206 136C207 132 206 128 204 128C202 128 201 132 201 138C201 143 199 147 193 152C186 158 184 157 184 148C184 144 183 137 182 132C179 112 187 106 200 119C203 122 207 125 210 126C214 127 219 130 222 132L228 134L229 140C230 155 219 165 208 161ZM26 153C22 150 34 123 43 114L49 108L49 103C48 98 49 94 50 96C51 97 51 99 51 100C51 102 52 104 53 105C58 112 58 115 50 118C37 122 30 131 31 143C33 154 33 153 29 154C28 154 26 154 26 153ZM147 145C145 143 142 142 139 141C132 140 128 135 132 132C139 127 144 127 151 129C159 131 170 129 169 126C168 124 165 124 162 125C161 126 159 126 156 125C147 124 137 124 133 127C126 130 123 129 122 119C122 116 121 114 120 114C118 114 118 114 119 118C120 127 107 131 103 124C100 119 97 120 99 125C100 128 100 128 98 130C92 134 95 136 101 132C109 127 120 130 120 138C120 146 113 148 103 144C92 141 89 137 89 125C89 117 89 118 95 113C97 111 100 108 102 106C109 96 129 95 136 105C140 111 147 113 152 111C157 110 153 107 147 107C145 107 143 106 139 101C132 94 128 93 117 94C108 94 107 93 112 88C122 76 139 75 152 86C155 89 160 93 163 96C169 100 175 108 175 112C178 128 178 132 178 136C177 142 171 145 167 143C163 140 162 141 158 143C152 147 151 147 147 145ZM313 134C312 134 312 132 312 129C314 121 309 120 303 128C299 133 297 134 293 131C290 129 288 127 287 118C286 112 284 109 276 104C271 102 270 100 272 96C276 89 286 95 292 108C295 114 296 114 298 110C302 98 320 111 322 127C323 134 317 139 313 134ZM280 127C279 126 278 124 277 122C277 120 276 119 274 119C269 119 269 113 274 111C277 110 278 111 281 116C285 124 284 133 280 127ZM210 103C207 102 202 99 198 97C194 95 192 93 191 91C190 89 188 89 187 91C186 97 201 107 211 107L215 107L210 103ZM303 100C302 99 301 95 301 93C301 87 301 87 290 77C288 76 286 73 285 70C284 67 282 64 279 61C275 57 274 56 275 54C276 47 286 57 289 69C291 75 292 76 298 79C305 83 310 91 308 97C307 102 305 103 303 100ZM169 95C167 92 162 88 159 86C147 79 146 69 156 67C161 65 163 63 163 55C163 49 164 47 166 43C169 37 169 36 165 29C162 23 163 22 167 25C177 30 178 51 168 51C166 51 165 51 165 53C165 54 166 54 169 54C174 54 176 60 175 71C174 78 173 78 167 76C162 74 160 73 160 75C160 77 162 78 166 80C176 83 180 90 177 96C174 100 174 100 169 95ZM289 94C285 88 283 87 273 87C261 87 258 84 263 71C264 66 264 62 262 62C261 62 259 66 258 71C256 83 253 85 221 88C212 89 207 84 205 69C204 63 204 59 205 46C205 44 205 43 204 42C204 42 203 44 203 48C201 64 192 62 191 45L191 36L195 33C200 29 200 28 196 23C187 14 192 3 205 3C215 2 221 10 213 13C210 15 211 17 216 19C221 20 222 23 222 28C221 33 219 34 214 31C209 29 205 28 204 31C203 33 207 36 212 37C221 39 223 45 223 61C223 74 224 78 228 78C231 78 231 75 228 70C224 61 230 56 237 63C242 68 243 68 240 62C237 57 237 56 243 51C257 37 278 51 273 72C271 78 273 79 283 81C292 82 296 84 298 89C301 98 295 102 289 94ZM100 94C94 88 105 75 119 72C129 70 135 66 137 62C138 59 139 58 142 60C144 61 144 61 144 59C144 58 143 57 141 56C131 52 131 39 141 36C146 34 145 32 139 31C128 30 125 18 135 11C139 9 141 9 150 11L153 11L152 7C151 -6 167 2 170 15C171 20 170 22 166 19C161 17 157 17 156 19C155 21 153 21 148 17C144 14 142 13 141 15C140 16 144 20 151 23C161 27 166 35 161 41C159 44 156 44 149 40C143 38 141 37 141 40C141 41 143 42 146 43C159 46 164 63 153 63C149 63 142 67 141 70C138 73 135 75 128 75C118 76 111 81 105 90C102 95 101 96 100 94ZM82 79C73 74 68 68 77 72C81 75 88 74 88 72C88 71 88 71 85 71C69 72 74 56 92 49C103 45 106 43 111 36C116 26 125 25 128 32C132 39 130 42 121 41C115 41 114 43 121 44C127 45 132 51 132 58C132 63 129 66 119 68C108 71 104 73 99 78C93 84 91 84 82 79ZM294 65C293 62 291 58 290 57C290 56 289 55 289 54C290 54 296 64 297 67C298 72 295 70 294 65ZM62 68C70 50 84 35 94 35C97 35 96 33 93 32L91 32L93 29C96 27 99 26 101 28C103 30 105 27 103 25C99 21 104 18 112 18C116 18 119 16 117 14C116 14 114 14 112 14C108 15 110 13 115 11C126 5 135 5 129 10C128 11 125 15 123 18C121 21 119 23 115 25C111 27 109 30 106 35C101 42 100 43 92 45C86 47 85 47 85 45C84 41 81 43 81 47C81 50 80 51 76 55C74 57 72 60 72 61C72 64 71 65 68 67C66 69 62 70 62 68ZM89 59C93 57 97 56 100 58C102 59 102 59 103 58C104 57 107 56 110 55C117 54 120 53 116 51C112 50 111 50 105 52C101 55 100 55 97 54C92 53 85 56 85 60C85 61 85 61 89 59ZM227 51C224 44 224 40 226 35C229 29 229 26 224 21C219 13 222 8 229 13C230 15 234 17 237 18C241 20 242 21 243 23C243 24 243 26 243 27C244 29 245 30 249 31C255 33 257 36 257 39C256 41 255 41 249 42C247 43 244 44 242 47C237 52 234 51 234 46C235 38 232 40 231 48C231 56 229 57 227 51ZM283 48C280 46 279 46 277 47C273 47 272 45 274 42C276 39 277 40 282 45C287 51 287 52 283 48ZM266 43C265 43 264 40 263 38C262 33 258 28 252 25C247 23 245 20 247 19C248 18 249 19 251 20C252 22 256 24 258 25C265 29 270 37 269 43C269 45 268 45 266 43ZM185 33C185 30 185 25 184 24C184 21 185 17 186 17C187 17 187 18 187 19C186 19 187 21 189 24L192 27L191 30C189 32 188 35 188 36C187 42 185 41 185 33ZM236 11C233 9 230 7 227 6C223 5 222 3 225 2C229 1 244 10 241 13C241 14 239 13 236 11ZM137 5C137 3 139 2 143 2C146 2 147 3 144 5C141 6 137 6 137 5Z";
+
+function BrainMark({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 351 420"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path fill="currentColor" fillRule="evenodd" d={BRAIN_PATH} />
+    </svg>
+  );
+}
 
 function CardIcon({ children }: { children: React.ReactNode }) {
   return (
-    <span className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-gold-500/40 bg-gold-500/10 text-gold-400">
-      <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <span className="atd-icon" aria-hidden="true">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="url(#atd-ico-grad)"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         {children}
       </svg>
     </span>
@@ -14,40 +41,64 @@ function CardIcon({ children }: { children: React.ReactNode }) {
 
 export default function Atendimento() {
   return (
-    <section id="atendimento" className="relative overflow-hidden bg-ink-900 py-20 text-white lg:py-28">
-      <div className="gold-line absolute inset-x-0 top-0 h-px" />
-      <div className="pointer-events-none absolute right-0 top-24 h-72 w-72 rounded-full bg-gold-500/10 blur-3xl" />
+    <section id="atendimento" className="atd" aria-label="Como funciona o atendimento">
+      {/* gradiente compartilhado pelos icones (paleta dos arcos do "Sobre Mim") */}
+      <svg width="0" height="0" aria-hidden="true" focusable="false" style={{ position: "absolute" }}>
+        <defs>
+          <linearGradient id="atd-ico-grad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#E2A03A" />
+            <stop offset="55%" stopColor="#C8703A" />
+            <stop offset="100%" stopColor="#8D4936" />
+          </linearGradient>
+        </defs>
+      </svg>
 
-      <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
-        <SectionHeading
-          dark
-          eyebrow="Atendimento"
-          title="Como funciona o atendimento"
-          description="Opções pensadas para se adequar à sua rotina, sempre com o mesmo cuidado e acolhimento."
-        />
+      {/* decoracao: cerebro em marca d'agua */}
+      <BrainMark className="atd-deco" />
 
-        <div className="grid gap-6 md:grid-cols-3">
+      <div className="atd-inner">
+        {/* ---------- cabecalho ---------- */}
+        <Reveal>
+          <p className="atd-eyebrow">
+            <span className="atd-eyebrow-line" aria-hidden="true" />
+            Atendimento
+          </p>
+        </Reveal>
+
+        <Reveal delay={80}>
+          <h2 className="atd-title">Como funciona o atendimento</h2>
+        </Reveal>
+
+        <Reveal delay={140}>
+          <p className="atd-lead">
+            Opções pensadas para se adequar à sua rotina, sempre com o mesmo cuidado
+            e acolhimento.
+          </p>
+        </Reveal>
+
+        {/* ---------- cards ---------- */}
+        <div className="atd-grid">
           {/* Card 1 - Presencial */}
           <Reveal delay={0}>
-            <article className="flex h-full flex-col rounded-3xl border border-white/10 bg-ink-800 p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-gold-500/50">
+            <article className="atd-card">
               <CardIcon>
                 <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Zm-8 1a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
               </CardIcon>
-              <h3 className="font-display text-2xl font-semibold">Consulta Presencial</h3>
-              <p className="mt-1 text-sm uppercase tracking-[0.15em] text-gold-400">
-                Atendimento em São Paulo
-              </p>
-              <address className="mt-6 space-y-1 text-sm font-light not-italic text-white/65">
-                <p>Domingos de Moraes, 2781</p>
-                <p>14º andar – Vila Mariana</p>
-                <p>São Paulo – SP</p>
+              <h3 className="atd-card-title">Consulta Presencial</h3>
+              <p className="atd-card-kicker">Atendimento em São Paulo</p>
+              <address className="atd-card-text atd-address">
+                Domingos de Moraes, 2781
+                <br />
+                14º andar – Vila Mariana
+                <br />
+                São Paulo – SP
               </address>
-              <div className="mt-7 pt-2">
+              <div className="atd-actions">
                 <a
                   href={MAPS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-medium uppercase tracking-wider text-white transition-all duration-300 hover:border-gold-400 hover:text-gold-300"
+                  className="atd-btn atd-btn-ghost"
                 >
                   Como chegar
                 </a>
@@ -57,24 +108,23 @@ export default function Atendimento() {
 
           {/* Card 2 - Telemedicina */}
           <Reveal delay={100}>
-            <article className="flex h-full flex-col rounded-3xl border border-white/10 bg-ink-800 p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-gold-500/50">
+            <article className="atd-card">
               <CardIcon>
                 <rect x="2" y="6" width="20" height="12" rx="2" />
                 <path d="m8 12 3 3 5-6M7 22h10" />
               </CardIcon>
-              <h3 className="font-display text-2xl font-semibold">Telemedicina</h3>
-              <p className="mt-1 text-sm uppercase tracking-[0.15em] text-gold-400">
-                Consultas online
+              <h3 className="atd-card-title">Telemedicina</h3>
+              <p className="atd-card-kicker">Consultas online</p>
+              <p className="atd-card-text">
+                Consultas online com praticidade, privacidade e o mesmo cuidado no
+                atendimento.
               </p>
-              <p className="mt-6 text-sm font-light leading-relaxed text-white/65">
-                Consultas online com praticidade, privacidade e o mesmo cuidado no atendimento.
-              </p>
-              <div className="mt-7 flex flex-1 flex-col justify-end pt-2">
+              <div className="atd-actions">
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold-500 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-ink-900 transition-all duration-300 hover:bg-gold-400 hover:shadow-[0_0_24px_rgba(201,162,39,0.4)]"
+                  className="atd-btn atd-btn-primary"
                 >
                   Agendar consulta online
                 </a>
@@ -84,25 +134,23 @@ export default function Atendimento() {
 
           {/* Card 3 - Agendamento */}
           <Reveal delay={200}>
-            <article className="flex h-full flex-col rounded-3xl border border-white/10 bg-ink-800 p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-gold-500/50">
+            <article className="atd-card">
               <CardIcon>
                 <rect x="3" y="4" width="18" height="17" rx="2" />
                 <path d="M8 2v4M16 2v4M3 9h18M12 13h.01M8 13h.01M16 13h.01M12 17h.01M8 17h.01M16 17h.01" />
               </CardIcon>
-              <h3 className="font-display text-2xl font-semibold">Agende sua consulta</h3>
-              <p className="mt-1 text-sm uppercase tracking-[0.15em] text-gold-400">
-                WhatsApp
+              <h3 className="atd-card-title">Agende sua consulta</h3>
+              <p className="atd-card-kicker">WhatsApp</p>
+              <p className="atd-card-text">
+                Entre em contato pelo WhatsApp para consultar disponibilidade e
+                realizar o agendamento.
               </p>
-              <p className="mt-6 text-sm font-light leading-relaxed text-white/65">
-                Entre em contato pelo WhatsApp para consultar disponibilidade e realizar o
-                agendamento.
-              </p>
-              <div className="mt-7 flex flex-1 flex-col justify-end pt-2">
+              <div className="atd-actions">
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold-500 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-ink-900 transition-all duration-300 hover:bg-gold-400 hover:shadow-[0_0_24px_rgba(201,162,39,0.4)]"
+                  className="atd-btn atd-btn-primary"
                 >
                   Falar pelo WhatsApp
                 </a>
@@ -111,6 +159,227 @@ export default function Atendimento() {
           </Reveal>
         </div>
       </div>
+
+      <style>{`
+        .atd {
+          position: relative;
+          overflow: hidden;
+          background:
+            radial-gradient(1100px 420px at 88% -10%, rgba(226,160,58,.10), transparent 60%),
+            linear-gradient(180deg, #FFFFFF 0%, #FCF8F5 45%, #F7F0EA 100%);
+          color: #8D4936;
+          font-family: "Jost", "Questrial", "Century Gothic", "Futura",
+            "Avenir Next", "Segoe UI", system-ui, sans-serif;
+        }
+
+        /* divisor sutil no lugar da barra marrom cheia */
+        .atd::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          height: 1px;
+          background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(141, 73, 54, .18) 18%,
+            rgba(200, 112, 58, .45) 50%,
+            rgba(141, 73, 54, .18) 82%,
+            transparent 100%
+          );
+        }
+
+        /* marca d'agua: cerebro na cor da identidade */
+        .atd-deco {
+          position: absolute;
+          right: -60px;
+          top: 40px;
+          width: 380px;
+          height: auto;
+          color: #8D4936;
+          opacity: .06;
+          pointer-events: none;
+          user-select: none;
+        }
+
+        .atd-inner {
+          position: relative;
+          z-index: 1;
+          margin: 0 auto;
+          max-width: 1343px;
+          padding: 64px 24px 72px;
+        }
+
+        /* ---------- cabecalho ---------- */
+        .atd-eyebrow {
+          display: inline-flex;
+          align-items: center;
+          gap: 12px;
+          margin: 0;
+          color: #C8703A;
+          font-size: 13px;
+          font-weight: 400;
+          text-transform: uppercase;
+          letter-spacing: .18em;
+        }
+        .atd-eyebrow-line {
+          display: block;
+          width: 34px;
+          height: 2px;
+          border-radius: 2px;
+          background: linear-gradient(90deg, #E2A03A, #C8703A);
+        }
+        .atd-title {
+          margin: 14px 0 0;
+          color: #8D4936;
+          font-size: 38px;
+          font-weight: 300;
+          line-height: 1.2;
+          letter-spacing: .005em;
+        }
+        .atd-lead {
+          margin: 18px 0 0;
+          max-width: 560px;
+          color: #A08578;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 1.5;
+        }
+
+        /* ---------- grid ---------- */
+        .atd-grid {
+          margin-top: 46px;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+          align-items: stretch;
+        }
+        /* o Reveal e o filho direto do grid: precisa esticar */
+        .atd-grid > * {
+          display: flex;
+          height: 100%;
+        }
+        .atd-grid > * > * { width: 100%; }
+
+        /* ---------- card ---------- */
+        .atd-card {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          height: 100%;
+          padding: 30px 28px 28px;
+          background-color: #FFFFFF;
+          border: 1px solid rgba(141, 73, 54, .14);
+          border-radius: 28px;
+          box-shadow: 0 10px 30px rgba(141, 73, 54, .06);
+          transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+        }
+        .atd-card:hover {
+          transform: translateY(-6px);
+          border-color: rgba(141, 73, 54, .34);
+          box-shadow: 0 18px 44px rgba(141, 73, 54, .13);
+        }
+        .atd-icon {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          flex: 0 0 auto;
+          width: 58px;
+          height: 58px;
+          margin-bottom: 22px;
+          border: 2px solid rgba(200, 112, 58, .30);
+          border-radius: 50% 50% 46% 54% / 54% 48% 52% 46%;
+          background: linear-gradient(140deg, rgba(226,160,58,.16), rgba(141,73,54,.10));
+        }
+        .atd-icon svg { width: 26px; height: 26px; }
+        .atd-card-title {
+          margin: 0;
+          color: #8D4936;
+          font-size: 23px;
+          font-weight: 400;
+          line-height: 1.25;
+        }
+        .atd-card-kicker {
+          margin: 8px 0 0;
+          color: #C8703A;
+          font-size: 12px;
+          font-weight: 400;
+          text-transform: uppercase;
+          letter-spacing: .15em;
+        }
+        .atd-card-text {
+          margin: 20px 0 0;
+          color: #A08578;
+          font-size: 15px;
+          font-weight: 400;
+          line-height: 1.6;
+        }
+        .atd-address { font-style: normal; }
+        .atd-actions {
+          margin-top: auto;
+          padding-top: 26px;
+        }
+
+        /* ---------- botoes ---------- */
+        .atd-btn {
+          display: inline-flex;
+          width: 100%;
+          align-items: center;
+          justify-content: center;
+          min-height: 46px;
+          padding: 0 22px;
+          border-radius: 999px;
+          font-size: 15px;
+          font-weight: 400;
+          text-align: center;
+          text-decoration: none;
+          transition: background-color .25s ease, color .25s ease,
+            border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+        }
+        .atd-btn-primary {
+          background-color: #3192AB;
+          color: #FFFFFF;
+          border: 1px solid #3192AB;
+        }
+        .atd-btn-primary:hover {
+          background-color: #2A8199;
+          border-color: #2A8199;
+          transform: translateY(-1px);
+          box-shadow: 0 10px 22px rgba(49, 146, 171, .26);
+        }
+        .atd-btn-ghost {
+          background-color: transparent;
+          color: #8D4936;
+          border: 1px solid rgba(141, 73, 54, .35);
+        }
+        .atd-btn-ghost:hover {
+          background-color: rgba(141, 73, 54, .06);
+          border-color: #8D4936;
+          transform: translateY(-1px);
+        }
+
+        /* ---------- responsivo ---------- */
+        @media (max-width: 1080px) {
+          .atd-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 980px) {
+          .atd-inner { padding: 48px 24px 56px; }
+          .atd-title { font-size: 30px; }
+          .atd-lead { margin-top: 14px; }
+          .atd-grid { margin-top: 32px; gap: 18px; }
+          .atd-deco { width: 260px; right: -70px; top: 24px; opacity: .05; }
+        }
+        @media (max-width: 720px) {
+          .atd-grid { grid-template-columns: 1fr; }
+          .atd-card { padding: 26px 22px 24px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .atd-card, .atd-btn { transition: none; }
+          .atd-card:hover, .atd-btn:hover { transform: none; }
+        }
+      `}</style>
     </section>
   );
 }
