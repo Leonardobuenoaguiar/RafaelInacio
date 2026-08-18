@@ -38,22 +38,36 @@ function Logo() {
           strokeWidth="4"
         />
 
+        {/* Cérebro redesenhado diretamente no viewBox, sem escalas que deformam. */}
         <g
-          transform="translate(50 30) scale(0.74) translate(-50 -26)"
           fill="none"
           stroke="url(#rf-brain)"
-          strokeWidth="1.3"
+          strokeWidth="1.9"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <path d="M50 13.2c-2.4-1.7-5.6-1.5-7.6.6-2.8-.5-5.4 1.2-6 3.9-2.5.7-4 3.2-3.4 5.7-1.9 1.6-2.2 4.3-.7 6.2-.6 2.2.6 4.5 2.7 5.3.5 2.1 2.6 3.5 4.8 3.1 1.4 1.5 3.7 1.8 5.4.7 1.3.8 2.9.8 4.2.1" />
-          <path d="M50 13.2c2.4-1.7 5.6-1.5 7.6.6 2.8-.5 5.4 1.2 6 3.9 2.5.7 4 3.2 3.4 5.7 1.9 1.6 2.2 4.3.7 6.2.6 2.2-.6 4.5-2.7 5.3-.5 2.1-2.6 3.5-4.8 3.1-1.4 1.5-3.7 1.8-5.4.7-1.3.8-2.9.8-4.2.1" />
-          <path d="M50 13.2v25.6" />
-          <path d="M44.6 17.8c-1.9 1.1-2.2 3-.7 4.4-1.7 1.2-1.8 3.1-.2 4.4-1.4 1.2-1.4 2.9 0 4.1" />
-          <path d="M40 22.4c-1.4.9-1.6 2.4-.4 3.5M41.4 30.6c-1.2.9-1.3 2.3-.2 3.3" />
-          <path d="M55.4 17.8c1.9 1.1 2.2 3 .7 4.4 1.7 1.2 1.8 3.1.2 4.4 1.4 1.2 1.4 2.9 0 4.1" />
-          <path d="M60 22.4c1.4.9 1.6 2.4.4 3.5M58.6 30.6c1.2.9 1.3 2.3.2 3.3" />
-          <path d="M50 38.8c.1 2.1-.6 3.9-2 5.3" strokeWidth="1.6" />
+          {/* hemisfério esquerdo */}
+          <path d="M49.5 16.4c-2.2-3.2-6.6-4-9.3-1.1-3.7-.4-6.6 2.6-6 6.2-3.7 1.3-4.7 5.7-2 8.5-2.1 3.5.2 7.7 4.2 8.1.9 3.7 5.7 4.9 8.3 2.1 2.7 1.9 4.8.1 4.8-2.8v-21Z" />
+
+          {/* hemisfério direito */}
+          <path d="M50.5 16.4c2.2-3.2 6.6-4 9.3-1.1 3.7-.4 6.6 2.6 6 6.2 3.7 1.3 4.7 5.7 2 8.5 2.1 3.5-.2 7.7-4.2 8.1-.9 3.7-5.7 4.9-8.3 2.1-2.7 1.9-4.8.1-4.8-2.8v-21Z" />
+
+          {/* fissura central */}
+          <path d="M50 16.2v25.3" opacity=".9" />
+
+          {/* sulcos do hemisfério esquerdo */}
+          <path d="M41.2 18.6c-2.2 1.1-2.8 3.7-1.1 5.4" />
+          <path d="M34.8 24.1c2.5-.5 4.7.8 5.3 3" />
+          <path d="M40.3 28.5c-2.7.5-4.1 3.3-2.6 5.6" />
+          <path d="M45.1 23.3c-2 1.3-2.3 3.8-.5 5.3" />
+          <path d="M43.3 34.3c2.1-.4 3.8.9 4 2.8" />
+
+          {/* sulcos do hemisfério direito */}
+          <path d="M58.8 18.6c2.2 1.1 2.8 3.7 1.1 5.4" />
+          <path d="M65.2 24.1c-2.5-.5-4.7.8-5.3 3" />
+          <path d="M59.7 28.5c2.7.5 4.1 3.3 2.6 5.6" />
+          <path d="M54.9 23.3c2 1.3 2.3 3.8.5 5.3" />
+          <path d="M56.7 34.3c-2.1-.4-3.8.9-4 2.8" />
         </g>
 
         <circle cx="48.4" cy="47.4" r="2.2" fill="#FDF6E6" />
@@ -87,7 +101,7 @@ function Logo() {
 
 function getNavHref(label: string, href: string) {
   /* A antiga seção #contato foi removida; o contato agora leva ao Footer. */
-  return /contato/i.test(label) ? "#rodape" : href;
+  return /contato/i.test(label) || href === "#contato" ? "#rodape" : href;
 }
 
 export default function Header() {
@@ -404,55 +418,107 @@ export default function Header() {
 
         @media (max-width: 600px) {
           .hdr-inner {
-            height: 78px;
-            gap: 10px;
-            padding: 0 12px;
+            height: 76px;
+            gap: 7px;
+            padding: 0 8px;
           }
 
           .hdr-logo {
-            gap: 8px;
+            min-width: 0;
+            gap: 6px;
           }
 
           .hdr-mark {
-            width: 52px;
-            height: 52px;
+            width: 46px;
+            height: 46px;
+          }
+
+          /* O nome continua visível no mobile. */
+          .hdr-word {
+            display: flex;
+            min-width: 0;
           }
 
           .hdr-name {
-            font-size: 17px;
+            font-size: 14px;
+            white-space: nowrap;
           }
 
           .hdr-spec {
-            display: none;
+            display: block;
+            margin-top: 3px;
+            font-size: 7.5px;
+            line-height: 1.25;
+            letter-spacing: 0.08em;
           }
 
           .hdr-inner > .hdr-cta-main {
-            height: 38px;
-            padding: 0 14px;
-            font-size: 13px;
+            height: 36px;
+            padding: 0 11px;
+            font-size: 11.5px;
           }
 
           .hdr-burger {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
           }
 
           .hdr-bar {
-            left: 10px;
+            left: 8px;
+            width: 18px;
           }
 
-          .hdr-bar:nth-child(1) { top: 13px; }
-          .hdr-bar:nth-child(2) { top: 19px; }
-          .hdr-bar:nth-child(3) { top: 25px; }
+          .hdr-bar:nth-child(1) { top: 11px; }
+          .hdr-bar:nth-child(2) { top: 17px; }
+          .hdr-bar:nth-child(3) { top: 23px; }
           .hdr-bar.a,
-          .hdr-bar.c { top: 19px; }
+          .hdr-bar.c { top: 17px; }
         }
 
-        @media (max-width: 480px) {
-          /* Libera espaço para o texto completo "Agendar Consulta". */
-          .hdr-word {
-            display: none;
+        @media (max-width: 400px) {
+          .hdr-inner {
+            height: 72px;
+            gap: 5px;
+            padding: 0 6px;
           }
+
+          .hdr-mark {
+            width: 42px;
+            height: 42px;
+          }
+
+          .hdr-name {
+            font-size: 12.5px;
+          }
+
+          .hdr-spec {
+            margin-top: 2px;
+            font-size: 6.8px;
+            line-height: 1.2;
+            letter-spacing: 0.055em;
+          }
+
+          .hdr-inner > .hdr-cta-main {
+            height: 34px;
+            padding: 0 8px;
+            font-size: 10.5px;
+          }
+
+          .hdr-burger {
+            width: 34px;
+            height: 34px;
+          }
+
+          .hdr-bar {
+            left: 8px;
+            width: 16px;
+          }
+
+          .hdr-bar:nth-child(1) { top: 10px; }
+          .hdr-bar:nth-child(2) { top: 16px; }
+          .hdr-bar:nth-child(3) { top: 22px; }
+          .hdr-bar.a,
+          .hdr-bar.c { top: 16px; }
         }
       `}</style>
     </header>

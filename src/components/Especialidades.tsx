@@ -1,15 +1,20 @@
+import type { ReactNode } from "react";
+
 type Item = {
   title: string;
   text: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
 };
 
-const stroke = {
+const iconProps = {
+  viewBox: "0 0 64 64",
+  className: "esp-svg",
   fill: "none",
   stroke: "currentColor",
-  strokeWidth: 1.4,
+  strokeWidth: 1.8,
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
+  "aria-hidden": true,
 };
 
 const items: Item[] = [
@@ -17,20 +22,29 @@ const items: Item[] = [
     title: "Psiquiatria Clínica",
     text: "A psiquiatria que tem como objetivo o bem-estar mental e maior qualidade de vida das pessoas.",
     icon: (
-      <svg viewBox="0 0 72 72" className="esp-svg" {...stroke}>
-        {/* perfil da cabeça */}
-        <path d="M34 6c12 0 22 8.6 22 20.4 0 7-3 11.4-6 15.2-2.2 2.8-3.2 4.4-3.2 7.2V52c0 2-1.4 3.4-3.4 3.4h-5.6c-2 0-3.4 1.4-3.4 3.4V66" />
-        <path d="M34 6C22.8 6 14.4 13 12.4 22.4c-.7 3.3-1.6 5.6-3.4 8.2-1.2 1.7-1 3.4.8 4.2l3.6 1.6c1 .5 1.5 1.3 1.5 2.4v3.6c0 2 1.4 3.4 3.4 3.4h2.5c1.6 0 2.6 1 2.8 2.6l1 8" />
-        {/* cérebro */}
-        <path d="M25.5 24.6c0-4.4 4.4-7.6 10.4-7.6s10.6 3.2 10.6 7.6c0 4.2-3.6 7-8.6 7.5" />
-        <path d="M25.5 24.6c-1.8 1-2.8 2.6-2.8 4.4 0 3.2 3.4 5.6 8.2 5.9" />
-        <path d="M37.9 32.1l-.4 6.2-4.6-3.4" />
-        <path d="M30.9 34.9c1.3.1 2.7.1 4 0" />
-        {/* mão aberta */}
-        <path d="M22 44.5h6.5v-6H22z" />
-        <path d="M28.5 44.5c2.6 0 4-1.2 6.6-1.2h5.2c1.5 0 2.4-.8 2.4-1.9 0-1.1-.9-1.8-2.4-1.8h-6.6" />
-        <path d="M33.7 39.6c-1.9 0-3.4-.6-5.2-1.6" />
-        <path d="M43.3 41.4l4.6-1.8c1.4-.5 2.6.1 2.9 1.1.3 1-.3 2-1.6 2.6l-7.4 3.3c-1.5.7-2.6.9-4.2.9h-9.1" />
+      <svg {...iconProps}>
+        {/* Cérebro simétrico */}
+        <path d="M31.5 14.2c-2.6-4.1-8.8-4.2-11.1-.1-4.6-.8-8.3 3.7-6.5 8-4.2 2.5-4.3 8.6-.2 11.2-2.1 4.7 1.5 10.1 6.6 9.8 2.2 4.2 8.6 4.2 11.2.2V14.2Z" />
+        <path d="M32.5 14.2c2.6-4.1 8.8-4.2 11.1-.1 4.6-.8 8.3 3.7 6.5 8 4.2 2.5 4.3 8.6.2 11.2 2.1 4.7-1.5 10.1-6.6 9.8-2.2 4.2-8.6 4.2-11.2.2V14.2Z" />
+        <path d="M32 14v30.8" opacity=".85" />
+
+        {/* Sulcos do lado esquerdo */}
+        <path d="M23 17.5c-3.1 1.8-3.7 5.6-1.2 8" />
+        <path d="M14.8 25.5c3.6-.9 6.9 1.2 7.7 4.6" />
+        <path d="M22.2 32.1c-3.5.8-5.3 4.5-3.4 7.5" />
+        <path d="M27.6 24.4c-2.8 1.7-3.2 5.2-.8 7.3" />
+        <path d="M25.3 39c2.8-.6 5 1 5.5 3.5" />
+
+        {/* Sulcos do lado direito */}
+        <path d="M41 17.5c3.1 1.8 3.7 5.6 1.2 8" />
+        <path d="M49.2 25.5c-3.6-.9-6.9 1.2-7.7 4.6" />
+        <path d="M41.8 32.1c3.5.8 5.3 4.5 3.4 7.5" />
+        <path d="M36.4 24.4c2.8 1.7 3.2 5.2.8 7.3" />
+        <path d="M38.7 39c-2.8-.6-5 1-5.5 3.5" />
+
+        {/* Base sutil */}
+        <path d="M26 51h12" opacity=".7" />
+        <path d="M29 55h6" opacity=".45" />
       </svg>
     ),
   },
@@ -38,28 +52,18 @@ const items: Item[] = [
     title: "Psicoterapia",
     text: "Atendimento psicoterapêutico através da Terapia Comportamental Dialética (DBT).",
     icon: (
-      <svg viewBox="0 0 72 72" className="esp-svg" {...stroke}>
-        {/* balão de fala */}
-        <path d="M45.5 4h15.8c2 0 3.7 1.6 3.7 3.6v9.2c0 2-1.7 3.6-3.7 3.6h-8.9l-6.1 4.6v-4.6h-.8c-2 0-3.7-1.6-3.7-3.6V7.6C41.8 5.6 43.5 4 45.5 4Z" />
-        <circle cx="48.4" cy="12.2" r="1.1" fill="currentColor" stroke="none" />
-        <circle cx="53.5" cy="12.2" r="1.1" fill="currentColor" stroke="none" />
-        <circle cx="58.6" cy="12.2" r="1.1" fill="currentColor" stroke="none" />
-        {/* pessoa esquerda (terapeuta) */}
-        <circle cx="16.4" cy="22.6" r="4.6" />
-        <path d="M16.4 27.2c-4.2 0-6.8 2.8-6.8 6.8v6.4" />
-        <path d="M16.4 34.2c1.8 0 3 .9 4.8 2.4l3.4 2.8" />
-        <path d="M9.6 40.4h7.2" />
-        <path d="M9.6 40.4V56M16.8 40.4V56" />
-        <path d="M6 56h7.2M13.4 56h7.2" />
-        {/* mesa / prancheta */}
-        <path d="M25.5 39.6h21" />
-        {/* pessoa direita (paciente) */}
-        <circle cx="55.6" cy="30.4" r="4.6" />
-        <path d="M55.6 35c4.2 0 6.8 2.8 6.8 6.8v5" />
-        <path d="M55.6 41c-2 0-3.4.9-5.2 2.2l-3.2 2.2" />
-        <path d="M48.8 46.8h7.2" />
-        <path d="M48.8 46.8V60M56 46.8V60" />
-        <path d="M45.2 60h7.2M52.4 60h7.2" />
+      <svg {...iconProps}>
+        {/* Balão principal */}
+        <path d="M11 12.5h30a6 6 0 0 1 6 6v13a6 6 0 0 1-6 6H27l-10 8v-8h-6a6 6 0 0 1-6-6v-13a6 6 0 0 1 6-6Z" />
+
+        {/* Pontos de conversa */}
+        <circle cx="19" cy="25" r="1.4" fill="currentColor" stroke="none" />
+        <circle cx="26" cy="25" r="1.4" fill="currentColor" stroke="none" />
+        <circle cx="33" cy="25" r="1.4" fill="currentColor" stroke="none" />
+
+        {/* Segundo balão, representando escuta e resposta */}
+        <path d="M45 27.5h7a7 7 0 0 1 7 7v8.5a7 7 0 0 1-7 7h-2v6l-7.5-6H38a7 7 0 0 1-7-7v-1" />
+        <path d="M43 38.5h7M43 43h4.5" opacity=".75" />
       </svg>
     ),
   },
@@ -67,20 +71,25 @@ const items: Item[] = [
     title: "Psiquiatria Forense",
     text: "Auxílio técnico aos pacientes e profissionais do direito nas implicações legais em processos judiciais.",
     icon: (
-      <svg viewBox="0 0 72 72" className="esp-svg" {...stroke}>
-        {/* martelo */}
-        <path d="M20.6 21.4 33 33.8" />
-        <path d="M27.4 14.6 39.8 27" />
-        <path d="M24 11.2 43.2 30.4" />
-        <path d="M17.2 18 36.4 37.2" />
-        <path d="m24.4 30-14 14" />
-        <path d="m6.2 47.4 6.8 6.8" />
-        <path d="m9.6 44 6.8 6.8" />
-        {/* cabeça com cérebro */}
-        <path d="M40 46.6c-5.6-3.4-9.4-9.4-9.4-16.4 0-10.6 8.8-19.2 19.6-19.2S69 19.6 69 29.4c0 6.6-3.4 12.4-8.6 15.6v6.6c0 2.2-1.6 3.8-3.8 3.8h-2.2v3.8c0 2.2-1.6 3.8-3.8 3.8h-7.4c-2.2 0-3.8-1.6-3.8-3.8v-6" />
-        <path d="M44.6 30.6c0-3.4 3.4-5.8 8-5.8s8.2 2.4 8.2 5.8c0 3.2-2.8 5.4-6.6 5.7" />
-        <path d="M44.6 30.6c-1.4.8-2.2 2-2.2 3.4 0 2.4 2.6 4.3 6.3 4.5" />
-        <path d="m54.2 36.3-.3 4.8-3.6-2.6" />
+      <svg {...iconProps}>
+        {/* Topo e coluna da balança */}
+        <path d="M32 9v43" />
+        <path d="M22 56h20" />
+        <path d="M26 52h12" />
+        <path d="M12 21h40" />
+        <path d="m32 13-7 8h14l-7-8Z" />
+
+        {/* Prato esquerdo */}
+        <path d="m17 21-8 17h16l-8-17Z" />
+        <path d="M7 38c1.2 5 5 7.5 10 7.5S25.8 43 27 38H7Z" />
+
+        {/* Prato direito */}
+        <path d="m47 21-8 17h16l-8-17Z" />
+        <path d="M37 38c1.2 5 5 7.5 10 7.5S55.8 43 57 38H37Z" />
+
+        {/* Pequeno símbolo cerebral no centro */}
+        <path d="M28 29.5c-2.2-1.7-5 .4-3.8 2.9-1.6 1.4-.5 4.2 1.7 4.1.8 2.1 3.6 1.9 4.2.1V31c0-1.1-.9-1.8-2.1-1.5Z" />
+        <path d="M36 29.5c2.2-1.7 5 .4 3.8 2.9 1.6 1.4.5 4.2-1.7 4.1-.8 2.1-3.6 1.9-4.2.1V31c0-1.1.9-1.8 2.1-1.5Z" />
       </svg>
     ),
   },
@@ -101,57 +110,87 @@ export default function Especialidades() {
 
       <style>{`
         .esp-section {
-          background-color: #8D4936;
           width: 100%;
+          background-color: #8d4936;
         }
+
         .esp-grid {
-          margin: 0 auto;
-          max-width: 1360px;
           display: grid;
           grid-template-columns: repeat(3, 1fr);
+          max-width: 1360px;
+          margin: 0 auto;
           padding: 72px 20px 78px;
         }
+
         .esp-col {
           display: flex;
           flex-direction: column;
           align-items: center;
-          text-align: center;
           padding: 0 12px;
+          text-align: center;
         }
+
+        /* Moldura orgânica e consistente para os três novos ícones. */
         .esp-icon {
-          color: #FFFFFF;
           display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 92px;
+          height: 92px;
+          border: 1px solid rgba(255, 255, 255, 0.24);
+          border-radius: 50% 50% 46% 54% / 54% 48% 52% 46%;
+          background: rgba(255, 255, 255, 0.055);
+          color: #ffffff;
         }
+
         .esp-svg {
-          width: 72px;
-          height: 72px;
           display: block;
+          width: 58px;
+          height: 58px;
+          overflow: visible;
         }
+
+        .esp-svg * {
+          vector-effect: non-scaling-stroke;
+        }
+
         .esp-title {
           margin: 30px 0 0;
-          color: #FFFFFF;
+          color: #ffffff;
+          font-family: "Jost", "Questrial", "Century Gothic", "Futura",
+            "Avenir Next", "Segoe UI", system-ui, sans-serif;
           font-size: 24px;
           font-weight: 300;
           line-height: 1.25;
           letter-spacing: 0.01em;
+        }
+
+        .esp-text {
+          max-width: 250px;
+          margin: 18px 0 0;
+          color: #f3c1b2;
           font-family: "Jost", "Questrial", "Century Gothic", "Futura",
             "Avenir Next", "Segoe UI", system-ui, sans-serif;
-        }
-        .esp-text {
-          margin: 18px 0 0;
-          max-width: 250px;
-          color: #F3C1B2;
           font-size: 14px;
           font-weight: 400;
           line-height: 1.45;
-          font-family: "Jost", "Questrial", "Century Gothic", "Futura",
-            "Avenir Next", "Segoe UI", system-ui, sans-serif;
         }
+
         @media (max-width: 860px) {
           .esp-grid {
             grid-template-columns: 1fr;
             gap: 48px;
             padding: 56px 24px 60px;
+          }
+
+          .esp-icon {
+            width: 86px;
+            height: 86px;
+          }
+
+          .esp-svg {
+            width: 54px;
+            height: 54px;
           }
         }
       `}</style>
