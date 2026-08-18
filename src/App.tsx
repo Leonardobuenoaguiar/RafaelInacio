@@ -25,10 +25,49 @@ export default function App() {
           width: 100%;
           min-width: 0;
           max-width: 100%;
+          min-height: 100%;
           margin: 0;
           padding: 0;
           overflow-x: hidden !important;
           overscroll-behavior-x: none;
+          background-color: #faf8f3 !important;
+          color-scheme: light;
+        }
+
+        /* Barra de rolagem discreta para Firefox. */
+        html {
+          scrollbar-width: thin;
+          scrollbar-color: #b9a59c #f3efeb !important;
+        }
+
+        /* Barra de rolagem para Chrome, Edge e Safari. */
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+          width: 11px;
+          height: 11px;
+        }
+
+        html::-webkit-scrollbar-track,
+        body::-webkit-scrollbar-track {
+          background-color: #f3efeb !important;
+        }
+
+        html::-webkit-scrollbar-thumb,
+        body::-webkit-scrollbar-thumb {
+          min-height: 42px;
+          border: 3px solid #f3efeb;
+          border-radius: 999px;
+          background-color: #b9a59c !important;
+        }
+
+        html::-webkit-scrollbar-thumb:hover,
+        body::-webkit-scrollbar-thumb:hover {
+          background-color: #8d746a !important;
+        }
+
+        html::-webkit-scrollbar-corner,
+        body::-webkit-scrollbar-corner {
+          background-color: #f3efeb !important;
         }
 
         .site-app {
