@@ -418,14 +418,80 @@ export default function Header() {
 
         @media (max-width: 600px) {
           .hdr-inner {
-            height: 76px;
-            gap: 7px;
-            padding: 0 8px;
+            height: 84px;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto 40px;
+            align-items: center;
+            gap: 8px;
+            padding: 0 12px;
           }
 
           .hdr-logo {
             min-width: 0;
-            gap: 6px;
+            gap: 7px;
+          }
+
+          .hdr-mark {
+            width: 56px;
+            height: 56px;
+          }
+
+          /* O texto pode encolher, mas o botão nunca sai da tela. */
+          .hdr-word {
+            display: flex;
+            min-width: 0;
+            overflow: hidden;
+          }
+
+          .hdr-name {
+            font-size: 14.5px;
+            white-space: nowrap;
+          }
+
+          .hdr-spec {
+            display: block;
+            margin-top: 3px;
+            font-size: 7.7px;
+            line-height: 1.25;
+            letter-spacing: 0.065em;
+            white-space: nowrap;
+          }
+
+          .hdr-inner > .hdr-cta-main {
+            height: 42px;
+            margin-left: 0;
+            padding: 0 13px;
+            font-size: 13px;
+          }
+
+          .hdr-burger {
+            width: 40px;
+            height: 40px;
+            margin-left: 0;
+          }
+
+          .hdr-bar {
+            left: 10px;
+            width: 18px;
+          }
+
+          .hdr-bar:nth-child(1) { top: 13px; }
+          .hdr-bar:nth-child(2) { top: 19px; }
+          .hdr-bar:nth-child(3) { top: 25px; }
+          .hdr-bar.a,
+          .hdr-bar.c { top: 19px; }
+        }
+
+        @media (max-width: 400px) {
+          .hdr-inner {
+            height: 82px;
+            grid-template-columns: minmax(0, 1fr) auto 36px;
+            gap: 5px;
+            padding: 0 8px 0 12px;
+          }
+
+          .hdr-logo {
+            gap: 5px;
           }
 
           .hdr-mark {
@@ -433,29 +499,21 @@ export default function Header() {
             height: 52px;
           }
 
-          /* O nome continua visível no mobile. */
-          .hdr-word {
-            display: flex;
-            min-width: 0;
-          }
-
           .hdr-name {
-            font-size: 14px;
-            white-space: nowrap;
+            font-size: 13px;
           }
 
           .hdr-spec {
-            display: block;
-            margin-top: 3px;
-            font-size: 7.5px;
-            line-height: 1.25;
-            letter-spacing: 0.08em;
+            margin-top: 2px;
+            font-size: 6.9px;
+            line-height: 1.2;
+            letter-spacing: 0.035em;
           }
 
           .hdr-inner > .hdr-cta-main {
-            height: 40px;
-            padding: 0 14px;
-            font-size: 12.5px;
+            height: 39px;
+            padding: 0 8px;
+            font-size: 11.5px;
           }
 
           .hdr-burger {
@@ -464,8 +522,8 @@ export default function Header() {
           }
 
           .hdr-bar {
-            left: 8px;
-            width: 18px;
+            left: 9px;
+            width: 16px;
           }
 
           .hdr-bar:nth-child(1) { top: 11px; }
@@ -473,52 +531,6 @@ export default function Header() {
           .hdr-bar:nth-child(3) { top: 23px; }
           .hdr-bar.a,
           .hdr-bar.c { top: 17px; }
-        }
-
-        @media (max-width: 400px) {
-          .hdr-inner {
-            height: 72px;
-            gap: 5px;
-            padding: 0 6px;
-          }
-
-          .hdr-mark {
-            width: 46px;
-            height: 46px;
-          }
-
-          .hdr-name {
-            font-size: 12.5px;
-          }
-
-          .hdr-spec {
-            margin-top: 2px;
-            font-size: 6.8px;
-            line-height: 1.2;
-            letter-spacing: 0.055em;
-          }
-
-          .hdr-inner > .hdr-cta-main {
-            height: 37px;
-            padding: 0 10px;
-            font-size: 11px;
-          }
-
-          .hdr-burger {
-            width: 34px;
-            height: 34px;
-          }
-
-          .hdr-bar {
-            left: 8px;
-            width: 16px;
-          }
-
-          .hdr-bar:nth-child(1) { top: 10px; }
-          .hdr-bar:nth-child(2) { top: 16px; }
-          .hdr-bar:nth-child(3) { top: 22px; }
-          .hdr-bar.a,
-          .hdr-bar.c { top: 16px; }
         }
       `}</style>
     </header>
